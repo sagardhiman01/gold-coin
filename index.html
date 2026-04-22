@@ -2560,6 +2560,13 @@
                 if (!isOpen) item.classList.add('open');
             });
         });
+
+        // SELF-PING LOGIC (Keeps Render Free Tier Alive)
+        setInterval(() => {
+            fetch(window.location.href)
+                .then(response => console.log('Ping successful - Web Service kept alive'))
+                .catch(error => console.log('Ping error:', error));
+        }, 10 * 60 * 1000); // Pings every 10 minutes
     </script>
 </body>
 
