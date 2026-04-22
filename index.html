@@ -1,0 +1,2566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Coin (GDC) — Digital Gold for the Modern Era</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F5E27A;
+            --gold-dark: #8B6914;
+            --black: #050505;
+            --black2: #0A0A0A;
+            --black3: #111111;
+            --black4: #1A1A1A;
+            --text: #E8DFC0;
+            --muted: #9A8E6E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--text);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(5, 5, 5, 0.0);
+            transition: all 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(5, 5, 5, 0.97);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 30px;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            font-family: 'Space Mono', monospace;
+            font-size: 15px;
+            letter-spacing: 2px;
+            padding: 12px 32px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* PARTICLES */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* HERO */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+            padding: 120px 24px 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28vw;
+            letter-spacing: 0;
+            color: rgba(212, 175, 55, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            animation: bgSlide 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgSlide {
+            from {
+                letter-spacing: 0
+            }
+
+            to {
+                letter-spacing: 8px
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(80px, 16vw, 180px);
+            letter-spacing: 6px;
+            line-height: 0.88;
+            background: linear-gradient(135deg, #8B6914 0%, #D4AF37 25%, #F5E27A 50%, #D4AF37 75%, #8B6914 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: shimmer 5s infinite linear, fadeUp 1s 0.5s forwards;
+            opacity: 0;
+            filter: drop-shadow(0 0 60px rgba(212, 175, 55, 0.25));
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%
+            }
+
+            100% {
+                background-position: 300% 50%
+            }
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2.5vw, 24px);
+            font-style: italic;
+            color: var(--muted);
+            margin: 20px 0 12px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeUp 1s 0.7s forwards;
+        }
+
+        .hero-ticker {
+            display: inline-flex;
+            gap: 40px;
+            margin: 20px 0 48px;
+            padding: 14px 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(212, 175, 55, 0.03);
+            opacity: 0;
+            animation: fadeUp 1s 0.9s forwards;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ticker-item {
+            text-align: center;
+        }
+
+        .ticker-val {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: var(--gold);
+            display: block;
+        }
+
+        .ticker-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 1s 1.1s forwards;
+        }
+
+        .btn-gold {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 3px;
+            padding: 16px 44px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-gold:hover::after {
+            left: 100%;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 3px;
+            padding: 16px 44px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-3px);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s 1.6s forwards;
+        }
+
+        .scroll-hint span {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollDown 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scaleY(1);
+                transform-origin: top
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        /* 3D SCROLL SECTIONS */
+        .parallax-section {
+            position: relative;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        /* STATS BAR */
+        #stats {
+            position: relative;
+            z-index: 1;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: var(--black3);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .stat-item {
+            padding: 44px 32px;
+            text-align: center;
+            border-right: 1px solid rgba(212, 175, 55, 0.1);
+            transition: background 0.3s;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-item:hover {
+            background: rgba(212, 175, 55, 0.04);
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 54px;
+            color: var(--gold);
+            line-height: 1;
+            display: block;
+        }
+
+        .stat-lbl {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* SECTION COMMONS */
+        .section-eye {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .section-h {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(40px, 7vw, 90px);
+            letter-spacing: 3px;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .section-h span {
+            color: var(--gold);
+        }
+
+        .gold-bar {
+            width: 50px;
+            height: 1px;
+            background: var(--gold);
+            margin: 24px 0;
+        }
+
+        .gold-bar.center {
+            margin: 24px auto;
+        }
+
+        .body-text {
+            font-size: 18px;
+            line-height: 1.85;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 18px;
+        }
+
+        /* ABOUT */
+        #about {
+            position: relative;
+            z-index: 1;
+            padding: 140px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .coin-3d-wrap {
+            perspective: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coin-3d {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            animation: spin3d 12s linear infinite;
+            position: relative;
+        }
+
+        @keyframes spin3d {
+            0% {
+                transform: rotateY(0deg) rotateX(8deg)
+            }
+
+            100% {
+                transform: rotateY(360deg) rotateX(8deg)
+            }
+        }
+
+        .coin-face {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            backface-visibility: hidden;
+        }
+
+        .coin-front {
+            background: radial-gradient(circle at 35% 30%, #F5E27A, #D4AF37 40%, #8B6914 70%, #3A2A04);
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.5), 0 0 160px rgba(212, 175, 55, 0.2), inset -20px -20px 40px rgba(0, 0, 0, 0.4), inset 10px 10px 20px rgba(245, 226, 122, 0.3);
+            border: 4px solid rgba(245, 226, 122, 0.3);
+        }
+
+        .coin-back {
+            background: radial-gradient(circle at 65% 65%, #F5E27A, #D4AF37 40%, #8B6914 70%, #3A2A04);
+            transform: rotateY(180deg);
+            box-shadow: 0 0 80px rgba(212, 175, 55, 0.5), inset -10px -10px 20px rgba(0, 0, 0, 0.5);
+            border: 4px solid rgba(245, 226, 122, 0.3);
+        }
+
+        .coin-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 60px;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .coin-sublabel {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+        }
+
+        .coin-ring {
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            top: -15px;
+            left: -15px;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            animation: spin3d 8s linear infinite reverse;
+        }
+
+        .coin-glow {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            top: -40px;
+            left: -40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            animation: glowPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.08)
+            }
+        }
+
+        /* WHY GDC */
+        #why {
+            position: relative;
+            z-index: 1;
+            padding: 100px 80px;
+            background: var(--black3);
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+        }
+
+        .why-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 60px;
+        }
+
+        .why-card {
+            padding: 48px 36px;
+            background: var(--black4);
+            border: 1px solid rgba(212, 175, 55, 0.07);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .why-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .why-card:hover {
+            background: rgba(212, 175, 55, 0.03);
+            transform: translateY(-6px);
+        }
+
+        .why-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 72px;
+            color: rgba(212, 175, 55, 0.08);
+            line-height: 1;
+            position: absolute;
+            top: 20px;
+            right: 24px;
+        }
+
+        .why-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .why-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            letter-spacing: 2px;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .why-body {
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ANIMATED ICONS */
+        .anim-icon {
+            width: 44px;
+            height: 44px;
+            margin-bottom: 20px;
+            display: block;
+            position: relative;
+        }
+        .anim-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        /* Flame icon */
+        .icon-flame path { animation: flameFlicker 1.5s ease-in-out infinite alternate; }
+        @keyframes flameFlicker {
+            0%   { d: path('M22 40 C10 30 6 18 14 10 C16 20 20 22 20 22 C20 14 24 6 32 2 C28 12 34 16 30 24 C34 20 36 14 36 14 C40 22 38 34 22 40Z'); }
+            100% { d: path('M22 40 C8 28 8 16 16 8 C17 18 21 21 21 21 C21 13 25 5 34 2 C29 13 35 17 31 25 C35 21 37 15 38 15 C41 24 38 35 22 40Z'); }
+        }
+        /* Shield pulse */
+        .icon-shield .shield-inner { animation: shieldPulse 2s ease-in-out infinite; }
+        @keyframes shieldPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.7;transform:scale(0.92)} }
+        /* Lock bounce */
+        .icon-lock .lock-shackle { animation: lockBounce 2s ease-in-out infinite; transform-origin:center bottom; }
+        @keyframes lockBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
+        /* Lightning flash */
+        .icon-bolt { animation: boltFlash 1.8s ease-in-out infinite; }
+        @keyframes boltFlash { 0%,80%,100%{opacity:1} 85%{opacity:0.3} 90%{opacity:1} }
+        /* Code blink */
+        .icon-code .code-cursor { animation: codeBlink 1s step-end infinite; }
+        @keyframes codeBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+        /* Globe spin */
+        .icon-globe .globe-ring { animation: globeSpin 4s linear infinite; transform-origin:center; }
+        @keyframes globeSpin { from{transform:rotateY(0deg)} to{transform:rotateY(360deg)} }
+        .icon-globe .globe-line { animation: globeOrbit 3s linear infinite; transform-box: fill-box; transform-origin: center; }
+        @keyframes globeOrbit { from{stroke-dashoffset:0} to{stroke-dashoffset:100} }
+        /* Eye scan */
+        .icon-eye .eye-scan { animation: eyeScan 2s ease-in-out infinite; }
+        @keyframes eyeScan { 0%,100%{transform:translateX(-6px)} 50%{transform:translateX(6px)} }
+        /* Whale wave */
+        .icon-whale { animation: whaleFloat 2s ease-in-out infinite; }
+        @keyframes whaleFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        /* Bot circuit */
+        .icon-bot .bot-blink { animation: botBlink 1.2s step-end infinite; }
+        @keyframes botBlink { 0%,100%{opacity:1} 40%,60%{opacity:0} }
+        /* Wallet */
+        .icon-wallet { animation: walletBob 2s ease-in-out infinite; }
+        @keyframes walletBob { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
+        /* Coin stack */
+        .icon-coins .coin-top { animation: coinStack 1.5s ease-in-out infinite; }
+        @keyframes coinStack { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        /* Swap arrows */
+        .icon-swap .swap-arr { animation: swapSpin 2s linear infinite; transform-origin: center; transform-box: fill-box; }
+        @keyframes swapSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        /* Sparkle */
+        .icon-spark .sp1 { animation: sparkle1 1.5s ease-in-out infinite; }
+        .icon-spark .sp2 { animation: sparkle1 1.5s ease-in-out 0.5s infinite; }
+        .icon-spark .sp3 { animation: sparkle1 1.5s ease-in-out 1s infinite; }
+        @keyframes sparkle1 { 0%,100%{opacity:0;transform:scale(0.5)} 50%{opacity:1;transform:scale(1.2)} }
+        /* Sec icon pulse ring */
+        .sec-icon-wrap .sec-ring { animation: secRing 1.8s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+        @keyframes secRing { 0%{transform:scale(0.8);opacity:1} 100%{transform:scale(1.6);opacity:0} }
+        .why-icon { display: block; margin-bottom: 20px; }
+
+        .why-tag {
+            display: inline-block;
+            margin-top: 18px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 4px 12px;
+        }
+
+        /* TOKENOMICS */
+        #tokenomics {
+            position: relative;
+            z-index: 1;
+            padding: 140px 80px;
+        }
+
+        .token-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .token-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .donut-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut-center {
+            position: absolute;
+            text-align: center;
+        }
+
+        .donut-center-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .donut-center-lbl {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .token-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .token-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 24px;
+            background: var(--black3);
+            border: 1px solid rgba(212, 175, 55, 0.07);
+            transition: all 0.3s;
+        }
+
+        .token-row:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        .token-color {
+            width: 4px;
+            height: 44px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .token-info {
+            flex: 1;
+        }
+
+        .token-name2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: var(--text);
+            display: block;
+        }
+
+        .token-desc2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .token-pct2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            color: var(--gold);
+        }
+
+        /* BURN MECHANIC */
+        #burn {
+            position: relative;
+            z-index: 1;
+            padding: 120px 80px;
+            background: var(--black3);
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+        }
+
+        .burn-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .burn-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 32px;
+        }
+
+        .burn-table th {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .burn-table td {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            color: var(--text);
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.07);
+        }
+
+        .burn-table tr:hover td {
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        .td-gold {
+            color: var(--gold);
+            font-weight: 600;
+            font-family: 'Space Mono', monospace;
+            font-size: 15px;
+        }
+
+        .burn-visual {
+            text-align: center;
+        }
+
+        .burn-core {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .core-center {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 56px;
+            letter-spacing: 2px;
+            color: var(--gold);
+            z-index: 10;
+            background: radial-gradient(circle, var(--black2) 0%, var(--black) 100%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(212,175,55,0.2), inset 0 0 20px rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.4);
+            text-shadow: 0 0 15px rgba(212,175,55,0.6);
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(212,175,55,0.2), inset 0 0 10px rgba(212,175,55,0.1); }
+            100% { box-shadow: 0 0 40px rgba(212,175,55,0.5), inset 0 0 25px rgba(212,175,55,0.3); }
+        }
+
+        .core-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .core-ring-1 {
+            width: 150px;
+            height: 150px;
+            border-top: 2px solid var(--gold);
+            border-right: 2px solid transparent;
+            animation: spinRing 3s linear infinite;
+        }
+
+        .core-ring-2 {
+            width: 190px;
+            height: 190px;
+            border-bottom: 2px solid var(--gold);
+            border-left: 2px solid transparent;
+            border-style: dashed;
+            animation: spinRing 5s linear infinite reverse;
+        }
+
+        .core-ring-3 {
+            width: 240px;
+            height: 240px;
+            border-right: 1px solid rgba(212, 175, 55, 0.4);
+            animation: spinRing 15s linear infinite;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.1) inset;
+        }
+
+        @keyframes spinRing {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .particle-wrap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            opacity: 0;
+        }
+
+        .p1 { animation: flyUp 2s ease-out infinite; --dx: -30px; --dy: -90px; }
+        .p2 { animation: flyUp 2.5s ease-out 0.4s infinite; --dx: 20px; --dy: -80px; }
+        .p3 { animation: flyUp 2.2s ease-out 0.8s infinite; --dx: -10px; --dy: -100px; }
+        .p4 { animation: flyUp 2.7s ease-out 1.2s infinite; --dx: 40px; --dy: -70px; }
+        .p5 { animation: flyUp 2.1s ease-out 1.5s infinite; --dx: -50px; --dy: -80px; }
+        .p6 { animation: flyUp 2.4s ease-out 1.8s infinite; --dx: 10px; --dy: -95px; }
+
+        @keyframes flyUp {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); opacity: 0; }
+        }
+
+        .burn-note {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* SECURITY */
+        #security {
+            position: relative;
+            z-index: 1;
+            padding: 140px 80px;
+        }
+
+        .security-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            margin-top: 60px;
+        }
+
+        .sec-card {
+            padding: 44px 40px;
+            background: var(--black3);
+            border: 1px solid rgba(212, 175, 55, 0.07);
+            display: flex;
+            gap: 28px;
+            transition: all 0.4s;
+        }
+
+        .sec-card:hover {
+            border-color: rgba(212, 175, 55, 0.25);
+            transform: translateX(4px);
+        }
+
+        .sec-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 22px;
+        }
+
+        .sec-body {}
+
+        .sec-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .sec-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .sec-badge {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3px 10px;
+        }
+
+        /* ROADMAP */
+        #roadmap {
+            position: relative;
+            z-index: 1;
+            padding: 140px 80px;
+            background: var(--black3);
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+        }
+
+        .roadmap-inner {
+            max-width: 1100px;
+            margin: 80px auto 0;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .road-card {
+            padding: 40px 28px;
+            background: var(--black4);
+            border-top: 3px solid rgba(212, 175, 55, 0.15);
+            position: relative;
+            transition: all 0.4s;
+        }
+
+        .road-card.active {
+            border-top-color: var(--gold);
+            background: rgba(212, 175, 55, 0.04);
+        }
+
+        .road-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .road-phase {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .road-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .road-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .road-list li {
+            font-size: 16px;
+            color: var(--muted);
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .road-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dark);
+        }
+
+        .road-status {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .status-live {
+            color: #4CAF50;
+        }
+
+        .status-soon {
+            color: var(--gold);
+        }
+
+        .status-future {
+            color: var(--muted);
+        }
+
+        /* HOW TO BUY */
+        #buy {
+            position: relative;
+            z-index: 1;
+            padding: 140px 80px;
+        }
+
+        .buy-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .buy-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 60px;
+        }
+
+        .buy-step {
+            padding: 40px 28px;
+            background: var(--black3);
+            border: 1px solid rgba(212, 175, 55, 0.07);
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .buy-step::after {
+            content: '→';
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold-dark);
+            font-size: 20px;
+            z-index: 2;
+        }
+
+        .buy-step:last-child::after {
+            display: none;
+        }
+
+        .buy-step:hover {
+            background: rgba(212, 175, 55, 0.04);
+            transform: translateY(-4px);
+        }
+
+        .step-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 60px;
+            color: rgba(212, 175, 55, 0.1);
+            line-height: 1;
+            display: block;
+        }
+
+        .step-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .step-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .step-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* CONTRACT */
+        #contract {
+            position: relative;
+            z-index: 1;
+            padding: 120px 80px;
+            background: var(--black3);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+        }
+
+        .contract-box {
+            max-width: 760px;
+            margin: 48px auto 0;
+            padding: 44px;
+            background: var(--black);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .contract-lbl {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 5px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .contract-addr {
+            font-family: 'Space Mono', monospace;
+            font-size: 15px;
+            color: var(--gold);
+            letter-spacing: 1px;
+            background: var(--black3);
+            padding: 20px 24px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .contract-note {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 36px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 2px;
+            padding: 7px 16px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        /* FAQ */
+        #faq {
+            position: relative;
+            z-index: 1;
+            padding: 140px 80px;
+        }
+
+        .faq-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .faq-item {
+            background: var(--black3);
+            border: 1px solid rgba(212, 175, 55, 0.07);
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: var(--text);
+        }
+
+        .faq-q:hover {
+            background: rgba(212, 175, 55, 0.04);
+        }
+
+        .faq-icon {
+            color: var(--gold);
+            font-size: 20px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+            padding: 0 32px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 300px;
+            padding: 0 32px 24px;
+        }
+
+        /* FOOTER */
+        footer {
+            position: relative;
+            z-index: 1;
+            background: var(--black3);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 60px 80px 32px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            letter-spacing: 5px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 280px;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            font-size: 16px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .reveal.delay1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal.delay2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal.delay3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal.delay4 {
+            transition-delay: 0.4s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3D PARALLAX */
+        .parallax-el {
+            will-change: transform;
+        }
+
+        /* RESPONSIVE DESIGN - TABLET & MOBILE OPTIMIZATION */
+        @media(max-width: 1024px) {
+            nav {
+                padding: 16px 32px;
+            }
+            .nav-links {
+                display: none; /* Hide nav links on smaller screens */
+            }
+            .hero-title {
+                font-size: 140px;
+            }
+            .hero-bg-text {
+                font-size: 350px;
+            }
+            
+            #about {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .token-layout, .burn-inner {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .why-grid, .features-grid, .security-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .roadmap-grid, .buy-steps, #stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            #why, #tokenomics, #burn, #security, #roadmap, #buy, #contract, #faq {
+                padding: 100px 40px;
+            }
+            
+            .footer-top {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .hero-title {
+                font-size: 90px;
+                letter-spacing: 15px;
+                line-height: 1;
+            }
+            .hero-bg-text {
+                font-size: 220px;
+                letter-spacing: 20px;
+            }
+            .hero-sub {
+                font-size: 16px;
+                padding: 0 16px;
+            }
+            .hero-ticker {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px 16px;
+                padding: 0 16px;
+            }
+            .hero-btns {
+                flex-direction: column;
+                width: 100%;
+                max-width: 320px;
+                gap: 16px;
+                margin: 0 auto;
+            }
+            .btn-gold, .btn-outline {
+                width: 100%;
+                text-align: center;
+                display: block;
+            }
+            
+            .section-h {
+                font-size: 48px;
+            }
+            
+            .roadmap-grid, .buy-steps, #stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-num {
+                font-size: 48px;
+            }
+            
+            .coin-3d {
+                width: 250px;
+                height: 250px;
+            }
+            
+            #why, #tokenomics, #burn, #security, #roadmap, #buy, #contract, #faq {
+                padding: 80px 24px;
+            }
+            
+            .sec-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                padding: 32px 24px;
+            }
+            
+            .why-card {
+                padding: 32px 24px;
+            }
+            
+            .burn-table th, .burn-table td {
+                padding: 12px 8px;
+                font-size: 14px;
+            }
+            .td-gold {
+                font-size: 13px;
+            }
+            
+            footer {
+                padding: 60px 24px 32px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            nav {
+                padding: 16px;
+            }
+            .nav-logo {
+                font-size: 24px;
+            }
+            .nav-cta {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            
+            .hero-title {
+                font-size: 60px;
+                letter-spacing: 10px;
+            }
+            .hero-bg-text {
+                font-size: 150px;
+                letter-spacing: 10px;
+            }
+            
+            .section-h {
+                font-size: 40px;
+            }
+            
+            .coin-3d {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .burn-core {
+                transform: scale(0.8);
+            }
+            
+            .ticker-val {
+                font-size: 28px;
+            }
+            .ticker-label {
+                font-size: 11px;
+            }
+            
+            .faq-q {
+                font-size: 18px;
+                padding: 20px;
+            }
+            .faq-a {
+                font-size: 15px;
+                padding: 0 20px;
+            }
+            .faq-item.open .faq-a {
+                padding: 0 20px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <nav id="mainNav">
+        <div class="nav-logo">GDC</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#why">Features</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#buy">How to Buy</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://pancakeswap.finance" target="_blank" class="nav-cta">Buy GDC</a>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg-text">GDC</div>
+        <div class="hero-content">
+            <p class="hero-tag">The New Standard of Digital Value</p>
+            <h1 class="hero-title">GOLD<br>COIN</h1>
+            <p class="hero-sub">Digital Gold for the Modern Global Investor</p>
+            <div class="hero-ticker">
+                <div class="ticker-item"><span class="ticker-val">21M</span><span class="ticker-label">Max Supply</span>
+                </div>
+                <div class="ticker-item"><span class="ticker-val">2%</span><span class="ticker-label">Burn Rate</span>
+                </div>
+                <div class="ticker-item"><span class="ticker-val">BEP-20</span><span
+                        class="ticker-label">Standard</span></div>
+                <div class="ticker-item"><span class="ticker-val">0%</span><span class="ticker-label">Rug Risk</span>
+                </div>
+            </div>
+            <div class="hero-btns">
+                <a href="https://pancakeswap.finance" target="_blank" class="btn-gold">Buy on PancakeSwap</a>
+                <a href="#about" class="btn-outline">Learn More</a>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats">
+        <div class="stat-item reveal">
+            <span class="stat-num" data-count="21">0</span>
+            <span class="stat-lbl">Million Total Supply</span>
+        </div>
+        <div class="stat-item reveal delay1">
+            <span class="stat-num">2%</span>
+            <span class="stat-lbl">Per Transaction Burned</span>
+        </div>
+        <div class="stat-item reveal delay2">
+            <span class="stat-num">18</span>
+            <span class="stat-lbl">Decimal Precision</span>
+        </div>
+        <div class="stat-item reveal delay3">
+            <span class="stat-num">∞</span>
+            <span class="stat-lbl">Years of Deflation</span>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="parallax-section">
+        <div class="about-left reveal">
+            <span class="section-eye">What is Gold Coin?</span>
+            <h2 class="section-h">DIGITAL<br><span>GOLD</span><br>REIMAGINED</h2>
+            <div class="gold-bar"></div>
+            <p class="body-text">Gold has been humanity's ultimate store of value for over 5,000 years. Scarce by
+                nature. Impossible to inflate. Trusted across every civilization and culture.</p>
+            <p class="body-text">Gold Coin (GDC) takes this ancient philosophy into the digital age. Built on BNB Smart
+                Chain, GDC is a deflationary token that mirrors gold's most powerful property — an ever-decreasing,
+                ever-scarcer supply.</p>
+            <p class="body-text">Every transaction burns 2% of GDC permanently. Every trade makes the remaining supply
+                more valuable. Every holder benefits as time passes — exactly like physical gold, but digital,
+                borderless, and accessible to anyone on Earth.</p>
+            <p class="body-text">With a hard cap of 21,000,000 GDC — inspired by Bitcoin's legendary scarcity — Gold
+                Coin is built for those who think in decades, not days.</p>
+            <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;">
+                <a href="#tokenomics" class="btn-gold">See Tokenomics</a>
+                <a href="#buy" class="btn-outline">How to Buy</a>
+            </div>
+        </div>
+        <div class="about-right reveal delay2">
+            <div class="coin-3d-wrap">
+                <div style="position:relative;">
+                    <div class="coin-glow"></div>
+                    <div class="coin-3d">
+                        <div class="coin-face coin-front">
+                            <span class="coin-label">GDC</span>
+                            <span class="coin-sublabel">Gold Coin</span>
+                        </div>
+                        <div class="coin-face coin-back">
+                            <span class="coin-label">21M</span>
+                            <span class="coin-sublabel">Max Supply</span>
+                        </div>
+                    </div>
+                    <div class="coin-ring"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY GDC -->
+    <section id="why" class="parallax-section">
+        <div class="why-inner">
+            <div class="reveal" style="text-align:center;">
+                <span class="section-eye">Why Choose GDC?</span>
+                <h2 class="section-h" style="text-align:center;">BUILT <span>DIFFERENT</span></h2>
+                <div class="gold-bar center"></div>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal delay1">
+                    <span class="why-num">01</span>
+                    <span class="why-icon anim-icon icon-flame">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs><radialGradient id="fg1" cx="50%" cy="70%" r="60%"><stop offset="0%" stop-color="#F5E27A"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#8B6914"/></radialGradient></defs>
+                        <path class="" d="M22 40 C10 30 6 18 14 10 C16 20 20 22 20 22 C20 14 24 6 32 2 C28 12 34 16 30 24 C34 20 36 14 36 14 C40 22 38 34 22 40Z" fill="url(#fg1)"/>
+                        <ellipse cx="22" cy="36" rx="6" ry="3" fill="rgba(212,175,55,0.3)"/>
+                      </svg>
+                    </span>
+                    <h3 class="why-title">Deflationary by Design</h3>
+                    <p class="why-body">Every transaction automatically burns 2% of GDC — permanently removed from
+                        supply forever. As demand grows and supply shrinks, the value of remaining GDC concentrates.
+                        This is not a feature. It's the foundation.</p>
+                    <span class="why-tag">2% Auto Burn</span>
+                </div>
+                <div class="why-card reveal delay2">
+                    <span class="why-num">02</span>
+                    <span class="why-icon anim-icon icon-shield">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="shield-inner" d="M22 4 L36 10 L36 22 C36 30 29 37 22 40 C15 37 8 30 8 22 L8 10 Z" fill="rgba(212,175,55,0.12)" stroke="#D4AF37" stroke-width="1.5"/>
+                        <path d="M16 22 L20 26 L28 18" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="22" cy="22" r="18" stroke="rgba(212,175,55,0.15)" stroke-width="1" class="sec-ring"/>
+                      </svg>
+                    </span>
+                    <h3 class="why-title">Anti-Whale Protection</h3>
+                    <p class="why-body">No single wallet can hold more than 2% of total supply (420,000 GDC). This
+                        ensures genuine price discovery — no one entity can manipulate the market. GDC belongs to
+                        thousands of holders, not a handful of whales.</p>
+                    <span class="why-tag">Max 2% Per Wallet</span>
+                </div>
+                <div class="why-card reveal delay3">
+                    <span class="why-num">03</span>
+                    <span class="why-icon anim-icon icon-lock">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="22" width="24" height="18" rx="3" fill="rgba(212,175,55,0.1)" stroke="#D4AF37" stroke-width="1.5"/>
+                        <path class="lock-shackle" d="M15 22 L15 16 C15 10 29 10 29 16 L29 22" stroke="#D4AF37" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="22" cy="31" r="3" fill="#D4AF37"/>
+                        <line x1="22" y1="34" x2="22" y2="37" stroke="#D4AF37" stroke-width="2"/>
+                      </svg>
+                    </span>
+                    <h3 class="why-title">Liquidity Locked Forever</h3>
+                    <p class="why-body">LP tokens are burned permanently at launch. The liquidity pool can never be
+                        drained. No rug pull. No exit scam. The moment GDC launches, not even the founders can remove
+                        liquidity. Trust is baked into the code.</p>
+                    <span class="why-tag">LP Burned at Launch</span>
+                </div>
+                <div class="why-card reveal delay1">
+                    <span class="why-num">04</span>
+                    <span class="why-icon anim-icon icon-bolt">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs><linearGradient id="boltg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F5E27A"/><stop offset="100%" stop-color="#8B6914"/></linearGradient></defs>
+                        <path d="M26 4 L12 24 L20 24 L18 40 L32 20 L24 20 Z" fill="url(#boltg)"/>
+                        <ellipse cx="22" cy="40" rx="8" ry="2" fill="rgba(212,175,55,0.2)"/>
+                      </svg>
+                    </span>
+                    <h3 class="why-title">BNB Smart Chain Speed</h3>
+                    <p class="why-body">Lightning-fast 3-second block times with transaction fees under $0.10. Trade GDC
+                        any time, any day, from anywhere in the world. No bank hours. No weekends. No borders. Fully
+                        permissionless, fully yours.</p>
+                    <span class="why-tag">BEP-20 Standard</span>
+                </div>
+                <div class="why-card reveal delay2">
+                    <span class="why-num">05</span>
+                    <span class="why-icon anim-icon icon-code">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="8" width="36" height="28" rx="3" stroke="#D4AF37" stroke-width="1.5" fill="rgba(212,175,55,0.05)"/>
+                        <circle cx="10" cy="14" r="2" fill="#D4AF37" opacity="0.6"/>
+                        <circle cx="16" cy="14" r="2" fill="#D4AF37" opacity="0.4"/>
+                        <circle cx="22" cy="14" r="2" fill="#D4AF37" opacity="0.2"/>
+                        <path d="M10 22 L16 27 L10 32" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                        <line x1="20" y1="32" x2="34" y2="32" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round"/>
+                        <rect class="code-cursor" x="20" y="20" width="3" height="8" rx="1" fill="#D4AF37"/>
+                      </svg>
+                    </span>
+                    <h3 class="why-title">Fully Transparent</h3>
+                    <p class="why-body">GDC contract is fully open-source and verified on BscScan. Every token, every
+                        transaction, every burn is publicly visible. Ownership is renounced after launch — no admin can
+                        change the rules. What you see is what you get.</p>
+                    <span class="why-tag">Open Source + Verified</span>
+                </div>
+                <div class="why-card reveal delay3">
+                    <span class="why-num">06</span>
+                    <span class="why-icon anim-icon">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="22" r="16" stroke="#D4AF37" stroke-width="1.5" fill="rgba(212,175,55,0.05)"/>
+                        <ellipse cx="22" cy="22" rx="7" ry="16" stroke="#D4AF37" stroke-width="1" stroke-dasharray="3 2" class="globe-line"/>
+                        <line x1="6" y1="22" x2="38" y2="22" stroke="#D4AF37" stroke-width="1" opacity="0.5"/>
+                        <line x1="10" y1="14" x2="34" y2="14" stroke="#D4AF37" stroke-width="1" opacity="0.3"/>
+                        <line x1="10" y1="30" x2="34" y2="30" stroke="#D4AF37" stroke-width="1" opacity="0.3"/>
+                        <circle cx="22" cy="22" r="18" stroke="rgba(212,175,55,0.15)" stroke-width="1" class="sec-ring"/>
+                      </svg>
+                    </span>
+                    <h3 class="why-title">Truly Borderless Gold</h3>
+                    <p class="why-body">Physical gold requires vaults, brokers, and paperwork. GDC requires only a
+                        wallet. Send the value of gold to anyone on Earth in 3 seconds for under a cent. This is what
+                        gold would look like if it were invented today.</p>
+                    <span class="why-tag">Global & Permissionless</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOKENOMICS -->
+    <section id="tokenomics" class="parallax-section">
+        <div class="token-inner">
+            <div class="reveal" style="text-align:center;">
+                <span class="section-eye">Supply Distribution</span>
+                <h2 class="section-h" style="text-align:center;">TOKEN<span>OMICS</span></h2>
+                <div class="gold-bar center"></div>
+                <p class="body-text" style="max-width:600px;margin:0 auto 0;">Total Supply: 21,000,000 GDC — Fixed
+                    Forever. No minting. No inflation. Ever.</p>
+            </div>
+            <div class="token-layout">
+                <div class="donut-wrap reveal">
+                    <canvas id="donutChart" width="320" height="320"></canvas>
+                    <div class="donut-center">
+                        <span class="donut-center-num">21M</span>
+                        <span class="donut-center-lbl">Total GDC</span>
+                    </div>
+                </div>
+                <div class="token-list reveal delay2">
+                    <div class="token-row">
+                        <div class="token-color" style="background:#D4AF37;"></div>
+                        <div class="token-info">
+                            <span class="token-name2">Public Sale & Liquidity</span>
+                            <span class="token-desc2">PancakeSwap trading pool — immediately tradeable</span>
+                        </div>
+                        <span class="token-pct2">40%</span>
+                    </div>
+                    <div class="token-row">
+                        <div class="token-color" style="background:#8B6914;"></div>
+                        <div class="token-info">
+                            <span class="token-name2">Reserve Fund</span>
+                            <span class="token-desc2">2-year time lock — ecosystem & future development</span>
+                        </div>
+                        <span class="token-pct2">20%</span>
+                    </div>
+                    <div class="token-row">
+                        <div class="token-color" style="background:#F5E27A;"></div>
+                        <div class="token-info">
+                            <span class="token-name2">Team Allocation</span>
+                            <span class="token-desc2">1-year lock, quarterly vesting — aligned incentives</span>
+                        </div>
+                        <span class="token-pct2">15%</span>
+                    </div>
+                    <div class="token-row">
+                        <div class="token-color" style="background:#4A3508;"></div>
+                        <div class="token-info">
+                            <span class="token-name2">Marketing & Growth</span>
+                            <span class="token-desc2">CEX listings, partnerships, community growth</span>
+                        </div>
+                        <span class="token-pct2">15%</span>
+                    </div>
+                    <div class="token-row">
+                        <div class="token-color" style="background:#2A1E04;"></div>
+                        <div class="token-info">
+                            <span class="token-name2">Ecosystem Development</span>
+                            <span class="token-desc2">DApps, integrations, gold reserve exploration</span>
+                        </div>
+                        <span class="token-pct2">10%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BURN MECHANIC -->
+    <section id="burn" class="parallax-section">
+        <div class="burn-inner">
+            <div class="reveal">
+                <span class="section-eye">How Deflation Works</span>
+                <h2 class="section-h">THE <span>BURN</span><br>MECHANIC</h2>
+                <div class="gold-bar"></div>
+                <p class="body-text">Every single transfer of GDC automatically destroys 2% of the transaction amount.
+                    This burned GDC is sent to the zero address — permanently removed from existence. Watch as supply
+                    shrinks over time.</p>
+                <table class="burn-table">
+                    <tr>
+                        <th>Year</th>
+                        <th>Event</th>
+                        <th>Circulating Supply</th>
+                    </tr>
+                    <tr>
+                        <td>Launch</td>
+                        <td>Initial Distribution</td>
+                        <td class="td-gold">21,000,000 GDC</td>
+                    </tr>
+                    <tr>
+                        <td>Year 1</td>
+                        <td>Active Trading Begins</td>
+                        <td class="td-gold">~19,000,000 GDC</td>
+                    </tr>
+                    <tr>
+                        <td>Year 3</td>
+                        <td>Growing Community</td>
+                        <td class="td-gold">~16,000,000 GDC</td>
+                    </tr>
+                    <tr>
+                        <td>Year 5</td>
+                        <td>Compounding Scarcity</td>
+                        <td class="td-gold">~12,000,000 GDC</td>
+                    </tr>
+                    <tr>
+                        <td>Year 10</td>
+                        <td>Extreme Scarcity Phase</td>
+                        <td class="td-gold">~7,000,000 GDC</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="burn-visual reveal delay2">
+                <div class="burn-core">
+                    <div class="particle-wrap">
+                        <div class="particle p1"></div>
+                        <div class="particle p2"></div>
+                        <div class="particle p3"></div>
+                        <div class="particle p4"></div>
+                        <div class="particle p5"></div>
+                        <div class="particle p6"></div>
+                    </div>
+                    <div class="core-ring core-ring-1"></div>
+                    <div class="core-ring core-ring-2"></div>
+                    <div class="core-ring core-ring-3"></div>
+                    <div class="core-center">2%</div>
+                </div>
+                <p class="burn-note" style="margin-top:24px;">2% of every transaction<br>burned forever</p>
+                <div
+                    style="margin-top:32px;padding:24px;background:var(--black);border:1px solid rgba(212,175,55,0.15);">
+                    <p
+                        style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">
+                        Buy Tax</p>
+                    <p style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);">4% Total</p>
+                    <p style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">2% Burn + 2%
+                        Liquidity</p>
+                    <div style="height:1px;background:rgba(212,175,55,0.1);margin:16px 0;"></div>
+                    <p
+                        style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">
+                        Sell Tax</p>
+                    <p style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);">6% Total</p>
+                    <p style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);">2% Burn + 2%
+                        Liquidity + 2% Marketing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section id="security" class="parallax-section">
+        <div class="security-inner">
+            <div class="reveal" style="text-align:center;">
+                <span class="section-eye">Trust & Safety</span>
+                <h2 class="section-h" style="text-align:center;">SECURITY <span>FIRST</span></h2>
+                <div class="gold-bar center"></div>
+            </div>
+            <div class="security-grid">
+                <div class="sec-card reveal delay1">
+                    <div class="sec-icon-wrap">
+                      <svg viewBox="0 0 44 44" fill="none" width="26" height="26">
+                        <path d="M22 4 L36 10 L36 22 C36 30 29 37 22 40 C15 37 8 30 8 22 L8 10 Z" fill="rgba(212,175,55,0.12)" stroke="#D4AF37" stroke-width="1.5" class="shield-inner"/>
+                        <path d="M16 22 L20 26 L28 18" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="sec-body">
+                        <h3 class="sec-title">LP Burned at Launch</h3>
+                        <p class="sec-desc">Liquidity pool tokens are permanently burned at the moment of launch. This
+                            makes it mathematically impossible for anyone — including the team — to ever remove the
+                            liquidity and run.</p>
+                        <span class="sec-badge">✓ Rug Pull Impossible</span>
+                    </div>
+                </div>
+                <div class="sec-card reveal delay2">
+                    <div class="sec-icon-wrap">
+                      <svg viewBox="0 0 44 44" fill="none" width="26" height="26">
+                        <ellipse cx="22" cy="22" rx="12" ry="7" stroke="#D4AF37" stroke-width="1.5" fill="rgba(212,175,55,0.08)"/>
+                        <circle cx="22" cy="22" r="4" fill="#D4AF37" class="eye-scan"/>
+                        <line x1="6" y1="22" x2="10" y2="22" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
+                        <line x1="34" y1="22" x2="38" y2="22" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
+                      </svg>
+                    </div>
+                    <div class="sec-body">
+                        <h3 class="sec-title">Ownership Renounced</h3>
+                        <p class="sec-desc">After launch, ownership of the smart contract is permanently renounced. No
+                            one can pause trading, change taxes, or modify any contract function. The code governs — not
+                            any person.</p>
+                        <span class="sec-badge">✓ Fully Decentralized</span>
+                    </div>
+                </div>
+                <div class="sec-card reveal delay1">
+                    <div class="sec-icon-wrap">
+                      <svg viewBox="0 0 44 44" fill="none" width="26" height="26">
+                        <rect x="10" y="22" width="24" height="18" rx="3" fill="rgba(212,175,55,0.1)" stroke="#D4AF37" stroke-width="1.5"/>
+                        <path class="lock-shackle" d="M15 22 L15 16 C15 10 29 10 29 16 L29 22" stroke="#D4AF37" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="22" cy="31" r="3" fill="#D4AF37"/>
+                      </svg>
+                    </div>
+                    <div class="sec-body">
+                        <h3 class="sec-title">Anti-Whale Limits</h3>
+                        <p class="sec-desc">Maximum wallet holding of 2% (420,000 GDC) prevents any single entity from
+                            controlling price. Maximum transaction of 1% (210,000 GDC) prevents sudden coordinated dumps
+                            from impacting the market.</p>
+                        <span class="sec-badge">✓ Fair Distribution</span>
+                    </div>
+                </div>
+                <div class="sec-card reveal delay2">
+                    <div class="sec-icon-wrap">
+                      <svg viewBox="0 0 44 44" fill="none" width="26" height="26">
+                        <rect x="8" y="12" width="28" height="22" rx="4" stroke="#D4AF37" stroke-width="1.5" fill="rgba(212,175,55,0.08)"/>
+                        <circle cx="16" cy="20" r="3" fill="#D4AF37" class="bot-blink"/>
+                        <circle cx="28" cy="20" r="3" fill="#D4AF37" class="bot-blink"/>
+                        <path d="M16 28 Q22 32 28 28" stroke="#D4AF37" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <line x1="22" y1="8" x2="22" y2="12" stroke="#D4AF37" stroke-width="2"/>
+                        <circle cx="22" cy="7" r="2" fill="#D4AF37"/>
+                      </svg>
+                    </div>
+                    <div class="sec-body">
+                        <h3 class="sec-title">Anti-Bot Protection</h3>
+                        <p class="sec-desc">30-second cooldown between trades per wallet prevents bot sniping. First 3
+                            blocks after launch are protected from automated bots. Suspicious wallets can be
+                            blacklisted. Fair launch for real humans.</p>
+                        <span class="sec-badge">✓ Anti-Snipe Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="parallax-section">
+        <div style="max-width:1300px;margin:0 auto;text-align:center;" class="reveal">
+            <span class="section-eye">The Journey Ahead</span>
+            <h2 class="section-h" style="text-align:center;">ROAD<span>MAP</span></h2>
+            <div class="gold-bar center"></div>
+        </div>
+        <div class="roadmap-inner">
+            <div class="roadmap-grid">
+                <div class="road-card active reveal delay1">
+                    <span class="road-status status-live">● Live</span>
+                    <p class="road-phase">Phase 1 — Q2 2026</p>
+                    <h3 class="road-title">Genesis Launch</h3>
+                    <ul class="road-list">
+                        <li>Smart contract deployment on BSC Mainnet</li>
+                        <li>PancakeSwap V3 listing</li>
+                        <li>Liquidity pool permanently burned</li>
+                        <li>Contract verified on BscScan</li>
+                        <li>Ownership renounced</li>
+                        <li>Twitter & Telegram community launch</li>
+                        <li>Website live</li>
+                    </ul>
+                </div>
+                <div class="road-card reveal delay2">
+                    <span class="road-status status-soon">◎ Soon</span>
+                    <p class="road-phase">Phase 2 — Q3 2026</p>
+                    <h3 class="road-title">Recognition</h3>
+                    <ul class="road-list">
+                        <li>CoinGecko listing application</li>
+                        <li>CoinMarketCap listing application</li>
+                        <li>DexScreener profile verification</li>
+                        <li>DEXTools listing</li>
+                        <li>Target: 1,000 unique holders</li>
+                        <li>Third-party smart contract audit</li>
+                        <li>Influencer outreach campaign</li>
+                    </ul>
+                </div>
+                <div class="road-card reveal delay3">
+                    <span class="road-status status-future">○ Planned</span>
+                    <p class="road-phase">Phase 3 — Q4 2026</p>
+                    <h3 class="road-title">Expansion</h3>
+                    <ul class="road-list">
+                        <li>CEX listing — MEXC, Gate.io outreach</li>
+                        <li>Target: 10,000 unique holders</li>
+                        <li>Strategic partnership announcements</li>
+                        <li>Community governance proposals</li>
+                        <li>GDC merchandise & brand campaign</li>
+                        <li>Major crypto media coverage</li>
+                    </ul>
+                </div>
+                <div class="road-card reveal delay4">
+                    <span class="road-status status-future">○ Vision</span>
+                    <p class="road-phase">Phase 4 — 2027+</p>
+                    <h3 class="road-title">Gold Standard</h3>
+                    <ul class="road-list">
+                        <li>Real gold reserve backing exploration</li>
+                        <li>Institutional partnership discussions</li>
+                        <li>Major Tier-1 CEX listing targets</li>
+                        <li>GDC DApp ecosystem development</li>
+                        <li>Cross-chain bridge (ETH, Polygon)</li>
+                        <li>100,000+ holder milestone</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO BUY -->
+    <section id="buy" class="parallax-section">
+        <div class="buy-inner">
+            <div class="reveal" style="text-align:center;">
+                <span class="section-eye">Get Started</span>
+                <h2 class="section-h" style="text-align:center;">HOW TO <span>BUY</span></h2>
+                <div class="gold-bar center"></div>
+                <p class="body-text" style="max-width:600px;margin:0 auto 0;">Buying GDC takes less than 5 minutes. You
+                    just need a wallet and some BNB.</p>
+            </div>
+            <div class="buy-steps">
+                <div class="buy-step reveal delay1">
+                    <span class="step-num">01</span>
+                    <span class="step-icon anim-icon icon-wallet" style="margin:0 auto 12px;">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="12" width="36" height="24" rx="4" stroke="#D4AF37" stroke-width="1.5" fill="rgba(212,175,55,0.08)"/>
+                        <rect x="28" y="20" width="12" height="8" rx="2" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1"/>
+                        <circle cx="34" cy="24" r="2" fill="#D4AF37"/>
+                        <line x1="4" y1="18" x2="40" y2="18" stroke="#D4AF37" stroke-width="1" opacity="0.4"/>
+                      </svg>
+                    </span>
+                    <h3 class="step-title">Get MetaMask</h3>
+                    <p class="step-desc">Download MetaMask wallet on mobile or browser. Create a new wallet and save
+                        your seed phrase safely — never share it with anyone.</p>
+                </div>
+                <div class="buy-step reveal delay2">
+                    <span class="step-num">02</span>
+                    <span class="step-icon anim-icon icon-coins" style="margin:0 auto 12px;">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="22" cy="34" rx="12" ry="5" fill="rgba(212,175,55,0.15)" stroke="#D4AF37" stroke-width="1.5"/>
+                        <ellipse cx="22" cy="28" rx="12" ry="5" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1.5"/>
+                        <ellipse cx="22" cy="22" rx="12" ry="5" fill="rgba(212,175,55,0.25)" stroke="#D4AF37" stroke-width="1.5" class="coin-top"/>
+                        <text x="22" y="25" text-anchor="middle" font-size="6" fill="#D4AF37" font-family="sans-serif" font-weight="bold">BNB</text>
+                      </svg>
+                    </span>
+                    <h3 class="step-title">Buy BNB</h3>
+                    <p class="step-desc">Purchase BNB from any exchange (Binance, WazirX, CoinDCX). Transfer it to your
+                        MetaMask wallet on BNB Smart Chain network.</p>
+                </div>
+                <div class="buy-step reveal delay3">
+                    <span class="step-num">03</span>
+                    <span class="step-icon anim-icon" style="margin:0 auto 12px;">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="22" r="16" stroke="#D4AF37" stroke-width="1.5" fill="rgba(212,175,55,0.07)"/>
+                        <path class="swap-arr" d="M14 18 L22 10 L30 18 M22 10 L22 30" stroke="#D4AF37" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M14 28 L22 36 L30 28" stroke="rgba(212,175,55,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                      </svg>
+                    </span>
+                    <h3 class="step-title">Open PancakeSwap</h3>
+                    <p class="step-desc">Go to pancakeswap.finance and connect your MetaMask wallet. Navigate to the
+                        Swap section and select BNB Smart Chain.</p>
+                </div>
+                <div class="buy-step reveal delay4">
+                    <span class="step-num">04</span>
+                    <span class="step-icon anim-icon icon-spark" style="margin:0 auto 12px;">
+                      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="22" cy="22" r="10" fill="rgba(212,175,55,0.15)" stroke="#D4AF37" stroke-width="1.5"/>
+                        <text x="22" y="26" text-anchor="middle" font-size="9" fill="#D4AF37" font-family="sans-serif" font-weight="bold">GDC</text>
+                        <line class="sp1" x1="22" y1="4" x2="22" y2="9" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                        <line class="sp2" x1="38" y1="14" x2="34" y2="17" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                        <line class="sp3" x1="38" y1="30" x2="34" y2="27" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                        <line class="sp1" x1="22" y1="40" x2="22" y2="35" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                        <line class="sp2" x1="6" y1="30" x2="10" y2="27" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                        <line class="sp3" x1="6" y1="14" x2="10" y2="17" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                    <h3 class="step-title">Swap for GDC</h3>
+                    <p class="step-desc">Paste the GDC contract address. Set slippage to 6-8%. Swap your BNB for GDC.
+                        Add GDC token to MetaMask to see your balance.</p>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:48px;" class="reveal">
+                <p
+                    style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:20px;">
+                    Important: Set slippage to 6-8% to account for the buy tax</p>
+                <a href="https://pancakeswap.finance" target="_blank" class="btn-gold">Go to PancakeSwap</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTRACT -->
+    <section id="contract">
+        <div class="reveal">
+            <span class="section-eye" style="text-align:center;display:block;">Transparency</span>
+            <h2 class="section-h" style="text-align:center;">CONTRACT</h2>
+            <div class="gold-bar center"></div>
+        </div>
+        <div class="contract-box reveal">
+            <p class="contract-lbl">BSC Mainnet Contract Address</p>
+            <div class="contract-addr" id="contractAddr">Mainnet Launch Coming — Q2 2026</div>
+            <p class="contract-note">After launch: verify on bscscan.com before buying</p>
+        </div>
+        <div class="badge-row reveal">
+            <span class="badge">✓ Anti-Whale Active</span>
+            <span class="badge">✓ LP Burned Forever</span>
+            <span class="badge">✓ Ownership Renounced</span>
+            <span class="badge">✓ Open Source</span>
+            <span class="badge">✓ BEP-20 Verified</span>
+            <span class="badge">✓ No Mint Function</span>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="faq-inner">
+            <div class="reveal" style="text-align:center;">
+                <span class="section-eye">Got Questions?</span>
+                <h2 class="section-h" style="text-align:center;">FREQUENTLY <span>ASKED</span></h2>
+                <div class="gold-bar center"></div>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <div class="faq-q">What is Gold Coin (GDC)?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">Gold Coin (GDC) is a deflationary BEP-20 token on BNB Smart Chain. It is inspired
+                        by gold's philosophy of scarcity and long-term value storage. With a fixed supply of 21 million
+                        GDC and a 2% automatic burn on every transaction, GDC is designed to become scarcer — and
+                        potentially more valuable — over time.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Is GDC safe from rug pulls?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">Yes. At launch, all LP tokens are permanently burned — meaning no one can ever
+                        remove liquidity from the trading pool. Additionally, ownership of the smart contract is
+                        renounced after launch, so no one can modify the contract, pause trading, or change any
+                        parameters. The code governs GDC, not any individual or team.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">How does the 2% burn work?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">Every time GDC is transferred — whether it's a buy, sell, or wallet-to-wallet
+                        transfer — 2% of the transaction amount is automatically sent to the zero address (0x000...000)
+                        and permanently destroyed. This is executed by the smart contract code automatically, with no
+                        human involvement. Over time, this reduces the total circulating supply continuously.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">What are the buy and sell taxes?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">Buy tax is 4% total: 2% goes to burn (permanently destroyed) and 2% goes to the
+                        liquidity pool to strengthen price stability. Sell tax is 6% total: 2% goes to burn, 2% to
+                        liquidity, and 2% to the marketing wallet to fund growth, listings, and community development.
+                        These taxes are the maximum and will never increase.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Why is the supply capped at 21 million?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">21 million is inspired by Bitcoin's legendary hard cap — the most recognized
+                        number in crypto for representing absolute scarcity. Just as Bitcoin's 21 million cap makes it
+                        "digital gold," GDC's 21 million cap reinforces its identity as a deflationary, scarce digital
+                        asset. With the 2% burn, the actual circulating supply will be far less than 21 million over
+                        time.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Where can I buy GDC?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">GDC will be available on PancakeSwap V3 on BNB Smart Chain from day one. You will
+                        need BNB in a MetaMask wallet, then swap BNB for GDC using the contract address. Set your
+                        slippage to 6-8% to account for the transaction taxes. Future listings on CoinGecko,
+                        CoinMarketCap, MEXC, and Gate.io are on the roadmap.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q">Is there a whitepaper?<span class="faq-icon">+</span></div>
+                    <div class="faq-a">Yes. The full GDC whitepaper covers the project vision, problem statement,
+                        technical architecture, tokenomics, security model, and 4-phase roadmap in detail. It is
+                        available for download from this website. The smart contract source code is fully open-source
+                        and verified on BscScan for anyone to review.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">GDC</div>
+                <p>Gold Coin — Digital gold for the modern global investor. Built on BNB Smart Chain. Deflationary by
+                    design. Long-term by nature.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#tokenomics">Tokenomics</a></li>
+                    <li><a href="#why">Features</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#buy">How to Buy</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Whitepaper</a></li>
+                    <li><a href="https://bscscan.com" target="_blank">BscScan</a></li>
+                    <li><a href="https://pancakeswap.finance" target="_blank">PancakeSwap</a></li>
+                    <li><a href="https://dexscreener.com" target="_blank">DexScreener</a></li>
+                    <li><a href="https://coingecko.com" target="_blank">CoinGecko</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Twitter / X</a></li>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Medium</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Gold Coin (GDC). All rights reserved. Not financial advice.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">𝕏</a>
+                <a href="#" class="social-link">✈</a>
+                <a href="#" class="social-link">◎</a>
+            </div>
+            <p>$GDC — BNB Smart Chain — BEP-20</p>
+        </div>
+    </footer>
+
+    <script>
+        // PARTICLES
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.8 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.25;
+                this.speedY = -Math.random() * 0.4 - 0.05;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.life = Math.random() * 200;
+                this.maxLife = Math.random() * 200 + 150;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY; this.life++;
+                if (this.life > this.maxLife || this.y < 0) this.reset();
+            }
+            draw() {
+                const a = this.life < 30 ? this.life / 30 : this.life > this.maxLife - 30 ? (this.maxLife - this.life) / 30 : 1;
+                ctx.save(); ctx.globalAlpha = this.opacity * a;
+                ctx.fillStyle = '#D4AF37';
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                ctx.restore();
+            }
+        }
+        const particles = Array.from({ length: 150 }, () => new Particle());
+        function animParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animParticles);
+        }
+        animParticles();
+
+        // 3D PARALLAX SCROLL
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    // Nav
+                    const nav = document.getElementById('mainNav');
+                    nav.classList.toggle('scrolled', scrollY > 60);
+                    // Parallax sections
+                    document.querySelectorAll('.parallax-section').forEach((sec, i) => {
+                        const rect = sec.getBoundingClientRect();
+                        const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+                        const intensity = (i % 2 === 0) ? 0.04 : -0.04;
+                        sec.style.transform = `translateY(${center * intensity}px)`;
+                    });
+                    // Hero bg text parallax
+                    const bgText = document.querySelector('.hero-bg-text');
+                    if (bgText) bgText.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px))`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // SCROLL REVEAL
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => revealObs.observe(el));
+
+        // COUNTER ANIMATION
+        function animCounter(el, target) {
+            let start = null;
+            const step = ts => {
+                if (!start) start = ts;
+                const p = Math.min((ts - start) / 1800, 1);
+                const e = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.floor(e * target);
+                if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
+        const counterObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const el = e.target;
+                    const target = parseInt(el.dataset.count);
+                    if (!isNaN(target)) animCounter(el, target);
+                    counterObs.unobserve(el);
+                }
+            });
+        });
+        document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+        // DONUT CHART
+        function drawDonut() {
+            const c = document.getElementById('donutChart');
+            if (!c) return;
+            const cx = c.getContext('2d');
+            const data = [
+                { pct: 40, color: '#D4AF37' },
+                { pct: 20, color: '#8B6914' },
+                { pct: 15, color: '#F5E27A' },
+                { pct: 15, color: '#4A3508' },
+                { pct: 10, color: '#2A1E04' }
+            ];
+            const cx2 = 160, cy2 = 160, r = 120, inner = 72;
+            let angle = -Math.PI / 2;
+            data.forEach(d => {
+                const slice = (d.pct / 100) * Math.PI * 2;
+                cx.beginPath();
+                cx.moveTo(cx2, cy2);
+                cx.arc(cx2, cy2, r, angle, angle + slice);
+                cx.closePath();
+                cx.fillStyle = d.color;
+                cx.fill();
+                angle += slice;
+            });
+            // Inner circle
+            cx.beginPath();
+            cx.arc(cx2, cy2, inner, 0, Math.PI * 2);
+            cx.fillStyle = '#050505';
+            cx.fill();
+            // Border ring
+            cx.beginPath();
+            cx.arc(cx2, cy2, inner, 0, Math.PI * 2);
+            cx.strokeStyle = 'rgba(212,175,55,0.2)';
+            cx.lineWidth = 1;
+            cx.stroke();
+        }
+        drawDonut();
+
+        // FAQ ACCORDION
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
